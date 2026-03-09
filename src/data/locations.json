@@ -1,0 +1,54 @@
+[
+  {
+    "category": "Early Childhood & 4K Sites",
+    "subtitle": "Serving Ages 2 Months – 4 Years",
+    "sites": [
+      {
+        "name": "Plymouth Church",
+        "description": "Milwaukee (Near UWM Campus)"
+      },
+      {
+        "name": "Lydell Community Center",
+        "description": "Whitefish Bay"
+      },
+      {
+        "name": "Indian Hill School",
+        "description": "River Hills"
+      }
+    ]
+  },
+  {
+    "category": "School Age Programs",
+    "subtitle": "Serving K3 – 6th Graders",
+    "sites": [
+      {
+        "name": "Atwater School",
+        "description": ""
+      },
+      {
+        "name": "Lake Bluff School",
+        "description": ""
+      },
+      {
+        "name": "Holy Family School",
+        "description": "(also serving Cumberland students)"
+      },
+      {
+        "name": "Indian Hill School",
+        "description": "(also serving Maple Dale students)"
+      },
+      {
+        "name": "Parkway School",
+        "description": "(also serving Glen Hills students)"
+      },
+      {
+        "name": "St. Monica School",
+        "description": "(also serving Richards students)"
+      },
+      {
+        "name": "St. Robert School",
+        "description": ""
+      }
+    ]
+  }
+]

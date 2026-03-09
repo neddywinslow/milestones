@@ -1,5 +1,6 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import locationData from '../data/locations.json';
 ---
 <MainLayout title="Locations">
   <section class="py-20 bg-surface-sand">
@@ -14,53 +15,39 @@ import MainLayout from '../layouts/MainLayout.astro';
   <section class="py-20 bg-white">
     <div class="max-w-[1200px] mx-auto px-4 md:px-6">
       <div class="prose prose-lg prose-headings:font-heading prose-headings:text-brand-navy max-w-none text-text-ink leading-relaxed">
-        
-        <h2>Early Childhood & 4K Sites</h2>
-        <p class="text-brand-sky font-semibold mb-6">Serving Ages 2 Months – 4 Years</p>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 not-prose">
-          <div class="card bg-surface-sand border-none">
-             <h3 class="text-xl font-bold font-heading text-brand-navy mb-2">Plymouth Church</h3>
-             <p class="text-text-slate text-sm">Milwaukee (Near UWM Campus)</p>
-          </div>
-          <div class="card bg-surface-sand border-none">
-             <h3 class="text-xl font-bold font-heading text-brand-navy mb-2">Lydell Community Center</h3>
-             <p class="text-text-slate text-sm">Whitefish Bay</p>
-          </div>
-          <div class="card bg-surface-sand border-none">
-             <h3 class="text-xl font-bold font-heading text-brand-navy mb-2">Indian Hill School</h3>
-             <p class="text-text-slate text-sm">River Hills</p>
-          </div>
-        </div>
-
-        <h2>School Age Programs</h2>
-        <p class="text-brand-sky font-semibold mb-6">Serving K3 – 6th Graders</p>
-        
-        <div class="bg-surface-sand/30 p-8 rounded-2xl border border-surface-mist not-prose">
-          <ul class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 text-text-ink">
-            <li class="flex items-start gap-2">
-               <span class="text-brand-red mt-1">•</span> <strong>Atwater School</strong>
-            </li>
-            <li class="flex items-start gap-2">
-               <span class="text-brand-red mt-1">•</span> <strong>Lake Bluff School</strong>
-            </li>
-            <li class="flex items-start gap-2">
-               <span class="text-brand-red mt-1">•</span> <span><strong>Holy Family School</strong> <span class="text-text-slate text-sm block">(also serving Cumberland students)</span></span>
-            </li>
-            <li class="flex items-start gap-2">
-               <span class="text-brand-red mt-1">•</span> <span><strong>Indian Hill School</strong> <span class="text-text-slate text-sm block">(also serving Maple Dale students)</span></span>
-            </li>
-            <li class="flex items-start gap-2">
-               <span class="text-brand-red mt-1">•</span> <span><strong>Parkway School</strong> <span class="text-text-slate text-sm block">(also serving Glen Hills students)</span></span>
-            </li>
-            <li class="flex items-start gap-2">
-               <span class="text-brand-red mt-1">•</span> <span><strong>St. Monica School</strong> <span class="text-text-slate text-sm block">(also serving Richards students)</span></span>
-            </li>
-             <li class="flex items-start gap-2">
-               <span class="text-brand-red mt-1">•</span> <strong>St. Robert School</strong>
-            </li>
-          </ul>
-        </div>
+        {locationData.map((section) => (
+          <>
+            <h2>{section.category}</h2>
+            <p class="text-brand-sky font-semibold mb-6">{section.subtitle}</p>
+            
+            {section.category.includes("Early") ? (
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 not-prose">
+                {section.sites.map((site: any) => (
+                  <div class="card bg-surface-sand border-none">
+                     <h3 class="text-xl font-bold font-heading text-brand-navy mb-2">{site.name}</h3>
+                     <p class="text-text-slate text-sm">{site.description}</p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div class="bg-surface-sand/30 p-8 rounded-2xl border border-surface-mist not-prose">
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 text-text-ink">
+                  {section.sites.map((site: any) => (
+                    <li class="flex items-start gap-2">
+                       <span class="text-brand-red mt-1">•</span>
+                       <span>
+                         <strong>{site.name}</strong>
+                         {site.description && (
+                           <span class="text-text-slate text-sm block">{site.description}</span>
+                         )}
+                       </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </>
+        ))}
 
       </div>
     </div>

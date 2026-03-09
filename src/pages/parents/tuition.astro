@@ -1,40 +1,22 @@
 ---
+import { getEntry } from 'astro:content';
 import MainLayout from '../../layouts/MainLayout.astro';
+
+const entry = await getEntry('pages', 'tuition');
+if (!entry) throw new Error('Content entry "tuition" not found');
+const { Content } = await entry.render();
 ---
-<MainLayout title="Tuition & Fees">
+<MainLayout title={entry.data.title}>
   <section class="py-20 bg-surface-sand">
     <div class="max-w-[800px] mx-auto px-4 md:px-6 text-center">
-      <h1 class="text-4xl md:text-5xl font-heading font-bold text-brand-navy mb-6">Tuition & Fees</h1>
-      <p class="text-xl text-text-slate leading-relaxed">
-        Milestones strives to keep our programs accessible while maintaining the highest quality of care and education for your children.
-      </p>
+      <h1 class="text-4xl md:text-5xl font-heading font-bold text-brand-navy mb-6">{entry.data.title}</h1>
     </div>
   </section>
 
   <section class="py-20 bg-white">
     <div class="max-w-[1000px] mx-auto px-4 md:px-6">
       <div class="prose prose-lg prose-headings:font-heading prose-headings:text-brand-navy max-w-none text-text-ink leading-relaxed">
-        <p>
-          Tuition rates vary depending on the specific program, age of the child, and schedule selected (full-time vs. part-time, before or after school, etc.).
-        </p>
-        
-        <div class="bg-surface-sand p-8 rounded-2xl border border-surface-mist flex flex-col md:flex-row gap-8 items-center justify-between my-12">
-           <div>
-             <h3 class="mt-0 pt-0 text-brand-navy">Current Rate Information</h3>
-             <p class="mb-0 text-base">To receive the most accurate and up-to-date tuition schedules for your family's needs, please contact our administrative office.</p>
-           </div>
-           <a href="/contact" class="btn-primary whitespace-nowrap no-underline text-white">Contact Us for Rates</a>
-        </div>
-
-        <h2>Financial Assistance</h2>
-        <p>
-          We believe that every child deserves a great start. Milestones accepts Wisconsin Shares child care subsidy payments. If you need assistance navigating that process, our administrative team is happy to help provide the necessary provider numbers.
-        </p>
-
-        <h2>Payment Information</h2>
-        <p>
-          For enrolled families, all tuition statements, invoices, and payments are managed securely through the <a href="https://connect.schoolcareworks.com/milestones_login.jsp" target="_blank" rel="noopener noreferrer" class="text-brand-sky font-semibold hover:text-brand-red">Family Portal</a>. We offer convenient options for automatic withdrawal and online payments.
-        </p>
+        <Content />
       </div>
     </div>
   </section>

@@ -1,38 +1,17 @@
 ---
+import { getCollection } from 'astro:content';
 import MainLayout from '../layouts/MainLayout.astro';
 import ProgramCard from '../components/ProgramCard.astro';
-import Testimonial from '../components/Testimonial.astro';
 
-const programs = [
-  {
-    title: "Early Childhood",
-    description: "Nurturing care and play-based learning to build a strong foundation for your youngest learners.",
-    ages: "2 months - 4 years",
-    href: "/programs/early-childhood",
-    color: "navy" as const,
-  },
-  {
-    title: "Kindergarten (4K)",
-    description: "A comprehensive Junior Kindergarten preparing 4-year-olds for success in school and life.",
-    ages: "4 years",
-    href: "/programs/kindergarten",
-    color: "red" as const,
-  },
-  {
-    title: "School Age Programs",
-    description: "Before and after school care designed to support homework, social development, and fun.",
-    ages: "K5 - 6th Grade",
-    href: "/programs/school-age",
-    color: "sky" as const,
-  },
-  {
-    title: "Summer Camps",
-    description: "Exciting, action-packed summer adventures like Little Explorers, Kid Crew, and Jet Set.",
-    ages: "K3 - 8th Grade",
-    href: "/programs/summer-camps",
-    color: "navy" as const,
-  }
-];
+const programsRaw = await getCollection('programs');
+// Sort programs
+const order = ['early-childhood', 'kindergarten', 'school-age', 'summer-camps'];
+const programs = programsRaw.sort((a, b) => {
+  return order.indexOf(a.slug) - order.indexOf(b.slug);
+});
+
+const testimonials = await getCollection('testimonials');
+const primaryTestimonial = testimonials[0]?.data;
 ---
 <MainLayout title="Home">
   <!-- Immersive Hero Section -->
@@ -158,7 +137,13 @@ const programs = [
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {programs.map(prog => (
-          <ProgramCard {...prog} />
+          <ProgramCard 
+            title={prog.data.title}
+            description={prog.data.description}
+            ages={prog.data.ages}
+            href={`/programs/${prog.slug}`}
+            color={prog.data.color}
+          />
         ))}
       </div>
       
@@ -176,15 +161,17 @@ const programs = [
     <div class="absolute bottom-0 right-0 w-96 h-96 bg-brand-sky rounded-full blur-[120px] mix-blend-screen opacity-50"></div>
     
     <div class="max-w-[1200px] mx-auto px-4 md:px-6 relative z-10">
-       <div class="text-center max-w-3xl mx-auto mb-16">
-          <svg class="w-16 h-16 text-brand-red mx-auto mb-6 opacity-80" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-          </svg>
-          <h2 class="text-3xl md:text-5xl font-heading font-medium text-white mb-8 leading-snug">
-            "The teachers are incredibly warm and attentive. It truly feels like a second home, and the peace of mind knowing my child is in such a high-quality environment is invaluable."
-          </h2>
-          <p class="font-heading font-bold text-lg text-brand-sky tracking-wider uppercase">— Sarah M. (Early Childhood Parent)</p>
-       </div>
+       {primaryTestimonial && (
+         <div class="text-center max-w-3xl mx-auto mb-16">
+            <svg class="w-16 h-16 text-brand-red mx-auto mb-6 opacity-80" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+            </svg>
+            <h2 class="text-3xl md:text-5xl font-heading font-medium text-white mb-8 leading-snug">
+              "{primaryTestimonial.quote}"
+            </h2>
+            <p class="font-heading font-bold text-lg text-brand-sky tracking-wider uppercase">— {primaryTestimonial.author} ({primaryTestimonial.role})</p>
+         </div>
+       )}
     </div>
   </section>
 

@@ -10,16 +10,67 @@ This is the official repository for the **Milestones Programs for Children** web
 
 ## 📂 Project Structure
 
-- `src/pages/`: Contains all routing and static pages (e.g., `index.astro`, `locations.astro`).
+- `src/pages/`: All routing and page templates. Pages are thin wrappers that fetch content from collections — no hardcoded copy.
 - `src/components/`: Reusable UI components (e.g., `Header.astro`, `Footer.astro`, `ProgramCard.astro`).
 - `src/layouts/`: Base layouts shared across pages (`MainLayout.astro`, `MarkdownLayout.astro`).
-- `src/content/news/`: Markdown content collection for all news and announcements.
-- `src/data/`: JSON data files for managing link lists (e.g., parent resources).
-- `public/assets/`: Static untouched assets such as images, PDFs, and SVGs.
+- `src/content/`: **All editable site content lives here** (see below).
+- `src/data/`: JSON data files for structured lists (locations, resources).
+- `public/assets/`: Static assets such as images, PDFs, and SVGs.
 
-## 🛠️ Local Development Workflow
+## 📝 Managing Content
 
-To work on the site locally:
+This site uses a **content-driven architecture**. All copy that non-technical staff may need to edit is stored in Markdown (`.md`) or JSON files — no touching `.astro` components required.
+
+### Content Collections (`src/content/`)
+
+| Collection | Location | What it controls |
+|---|---|---|
+| `programs` | `src/content/programs/*.md` | Each program card and detail page (early-childhood, kindergarten, school-age, summer-camps) |
+| `pages` | `src/content/pages/*.md` | Body copy for static pages: mission, enrollment, tuition, careers |
+| `news` | `src/content/news/*.md` | News posts and announcements |
+| `testimonials` | `src/content/testimonials/*.json` | Parent testimonial quotes on the homepage |
+
+**Frontmatter for programs:**
+```markdown
+---
+title: "Early Childhood"
+description: "Short description shown on cards."
+ages: "2 months – 5 years"
+color: "sky"   # navy | sky | red
+---
+
+Full Markdown body shown on the program detail page...
+```
+
+**Frontmatter for news:**
+```markdown
+---
+title: "Your Article Title"
+date: 2024-01-15
+summary: "Short summary shown on the news index."
+pinned: false
+---
+
+Write your full article content here...
+```
+
+**Frontmatter for pages (mission, enrollment, etc.):**
+```markdown
+---
+title: "Page Title"
+---
+
+Full Markdown body rendered on the page...
+```
+
+### Data Files (`src/data/`)
+
+| File | What it controls |
+|---|---|
+| `locations.json` | All site locations (Early Childhood + School Age sites) shown on the Locations page |
+| `resources.json` | Parent resource PDF cards shown on the Parent Resources page |
+
+## 🛠️ Local Development
 
 1. **Install dependencies:**
    ```bash
@@ -30,41 +81,21 @@ To work on the site locally:
    ```bash
    npm run dev
    ```
-   The local development site will automatically be available at `http://localhost:4322/`.
+   Available at `http://localhost:4322/`
 
 3. **Build for production:**
    ```bash
    npm run build
    ```
-   The command will generate fully static assets in the `dist/` directory, ready to be deployed to any static host.
-
-## 📝 Managing Content
-
-### Adding News & Announcements
-News posts are driven by an Astro Content Collection. To publish a new announcement, simply create a new Markdown (`.md`) file inside the `src/content/news/` directory using the following frontmatter:
-
-```markdown
----
-title: "Your Article Title"
-date: "YYYY-MM-DD"
-summary: "A short snippet that appears on the news index and homepage."
-category: "General"
----
-
-Write your full markdown content here...
-```
-
-### Managing Parent Resources
-Parent resource PDFs and links are managed centrally via a data file so the UI updates automatically. Edit the JSON list found at:
-`src/data/resources.json`.
+   Outputs fully static assets to `dist/`.
 
 ## 🎨 Design System
 
-The site's visual identity relies on strict Tailwind CSS tokens configured in `tailwind.config.mjs`:
-- **Brand Navy:** `#1F3A68` (Primary Headings)
-- **Brand Red:** `#B4372A` (Action Buttons, Interactions)
-- **Sky Blue:** `#4D7FBF` (Secondary Accents, Hover States)
-- **Typography:** `Poppins` (Display Headings) and `Inter` (Body Copy).
+Visual identity tokens configured in `tailwind.config.mjs`:
+- **Brand Navy:** `#1F3A68` — Primary headings
+- **Brand Red:** `#B4372A` — Action buttons, interactions
+- **Sky Blue:** `#4D7FBF` — Secondary accents, hover states
+- **Typography:** `Poppins` (display headings) · `Inter` (body copy)
 
 ---
 *Maintained by the Milestones Programs for Children team.*
