@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import MainLayout from '../layouts/MainLayout.astro';
 import ProgramCard from '../components/ProgramCard.astro';
 
@@ -11,6 +11,9 @@ const programs = programsRaw.sort((a, b) => {
 });
 
 const testimonials = await getCollection('testimonials');
+const homeEntry = await getEntry('pages', 'home');
+if (!homeEntry) throw new Error('Home page content not found in src/content/pages/home.md');
+const { data: home } = homeEntry;
 ---
 <MainLayout title="Home">
   <!-- Immersive Hero Section -->
@@ -29,7 +32,7 @@ const testimonials = await getCollection('testimonials');
         </div>
         
         <h1 class="text-5xl md:text-7xl font-heading font-extrabold text-white leading-[1.1] mb-8 drop-shadow-lg">
-          Where learning feels like <span class="text-brand-red relative inline-block">home.
+          {home.heroTitle.split('home.')[0]}<span class="text-brand-red relative inline-block">home.
             <svg class="absolute w-full h-3 -bottom-1 left-0 text-brand-red opacity-80" viewBox="0 0 100 10" preserveAspectRatio="none">
               <path d="M0 5 Q 50 15 100 0" stroke="currentColor" stroke-width="3" fill="transparent"/>
             </svg>
@@ -37,18 +40,18 @@ const testimonials = await getCollection('testimonials');
         </h1>
         
         <p class="text-xl md:text-2xl text-surface-sand/90 mb-10 leading-relaxed font-light max-w-2xl drop-shadow-md">
-          Providing the absolute highest quality care and educational opportunities for children ages 2 months to 13 years across Wisconsin.
+          {home.heroSubtitle}
         </p>
         
         <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5">
           <a href="/programs" class="btn-primary text-lg px-8 py-4 h-auto shadow-[0_0_30px_rgba(180,58,44,0.4)] hover:shadow-[0_0_40px_rgba(180,58,44,0.6)] group">
-            Explore Our Programs
+            {home.heroCta}
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 group-hover:translate-x-1.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
             </svg>
           </a>
           <a href="/parents/enrollment" class="btn-secondary text-lg border-white/20 bg-white/10 backdrop-blur-md text-white hover:bg-white hover:text-brand-navy h-auto px-8 py-4">
-            Enroll Today
+            {home.heroSecondaryCta}
           </a>
         </div>
       </div>
@@ -124,9 +127,9 @@ const testimonials = await getCollection('testimonials');
     <div class="max-w-[1200px] mx-auto px-4 md:px-6 relative z-10">
       <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
         <div class="max-w-2xl">
-          <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-brand-navy mb-5">Programs for Every Stage</h2>
+          <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-brand-navy mb-5">{home.programsTitle}</h2>
           <p class="text-text-slate text-xl">
-            From their first words to their middle school science projects, we have a nurturing program designed to suit the individual needs of your child.
+            {home.programsSubtitle}
           </p>
         </div>
         <a href="/programs" class="btn-secondary whitespace-nowrap hidden md:inline-flex">

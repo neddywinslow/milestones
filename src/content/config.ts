@@ -24,6 +24,18 @@ const pagesCollection = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
+    heroTitle: z.string().optional(),
+    heroSubtitle: z.string().optional(),
+    heroCta: z.string().optional(),
+    heroSecondaryCta: z.string().optional(),
+    whyLabel: z.string().optional(),
+    whyTitle: z.string().optional(),
+    whyDescription: z.string().optional(),
+    whyItems: z.array(z.string()).optional(),
+    programsTitle: z.string().optional(),
+    programsSubtitle: z.string().optional(),
+    ctaTitle: z.string().optional(),
+    ctaDescription: z.string().optional(),
   }),
 });
 
