@@ -67,6 +67,7 @@ Full Markdown body rendered on the page...
 
 | File | What it controls |
 |---|---|
+| `navigation.json` | All site links (main nav, footer lists, and header action buttons) |
 | `locations.json` | All site locations (Early Childhood + School Age sites) shown on the Locations page |
 | `resources.json` | Parent resource PDF cards shown on the Parent Resources page |
 

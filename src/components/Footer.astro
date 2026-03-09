@@ -1,4 +1,6 @@
 ---
+import navigation from '../data/navigation.json';
+const { footer, actions } = navigation;
 ---
 <footer class="bg-brand-navy py-12 md:py-16 text-white/80 mt-12 md:mt-24">
   <div class="max-w-[1200px] mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -20,18 +22,16 @@
     <div>
       <h3 class="text-white font-heading font-semibold mb-4 text-lg">Quick Links</h3>
       <ul class="space-y-3 mt-4 text-sm">
-        <li><a href="/programs/early-childhood" class="hover:text-white transition-colors">Early Childhood (2 mo - 4 yrs)</a></li>
-        <li><a href="/programs/kindergarten" class="hover:text-white transition-colors">Kindergarten (4K)</a></li>
-        <li><a href="/programs/school-age" class="hover:text-white transition-colors">School Age (K3 - 6th Grade)</a></li>
-        <li><a href="/programs/summer-camps" class="hover:text-white transition-colors">Summer Camps</a></li>
-        <li><a href="/news" class="hover:text-white transition-colors">Latest News</a></li>
+        {footer.quickLinks.map((link) => (
+          <li><a href={link.href} class="hover:text-white transition-colors">{link.text}</a></li>
+        ))}
       </ul>
     </div>
 
     <div>
       <h3 class="text-white font-heading font-semibold mb-4 text-lg">Support Our Mission</h3>
       <p class="text-sm mb-4">Milestones is a nonprofit organization dedicated to children and families.</p>
-      <a href="/donate" class="inline-flex items-center justify-center px-5 py-2.5 bg-brand-red text-white text-sm font-medium rounded-xl hover:bg-brand-red/90 transition-colors">
+      <a href={actions.donate} class="inline-flex items-center justify-center px-5 py-2.5 bg-brand-red text-white text-sm font-medium rounded-xl hover:bg-brand-red/90 transition-colors">
         Donate Today
       </a>
     </div>

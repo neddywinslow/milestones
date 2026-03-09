@@ -1,11 +1,6 @@
 ---
-const navLinks = [
-  { text: 'Programs', href: '/programs' },
-  { text: 'Locations', href: '/locations' },
-  { text: 'For Parents', href: '/parents/enrollment' },
-  { text: 'News', href: '/news' },
-  { text: 'About', href: '/about/mission' },
-];
+import navigation from '../data/navigation.json';
+const { mainNav, actions } = navigation;
 ---
 <header class="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-surface-mist shadow-sm">
   <div class="max-w-[1200px] mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
@@ -17,7 +12,7 @@ const navLinks = [
     <!-- Desktop Nav -->
     <nav id="mobile-nav" class="hidden absolute top-20 left-0 w-full bg-white border-b border-surface-mist shadow-lg lg:static lg:block lg:w-auto lg:border-none lg:shadow-none lg:bg-transparent">
       <ul class="flex flex-col lg:flex-row items-center gap-6 text-sm font-medium text-text-slate p-6 lg:p-0">
-        {navLinks.map((link) => (
+        {mainNav.map((link) => (
           <li class="w-full lg:w-auto text-center lg:text-left">
             <a href={link.href} class="block hover:text-brand-red transition-colors w-full lg:w-auto">{link.text}</a>
           </li>
@@ -27,13 +22,13 @@ const navLinks = [
 
     <!-- Header Actions -->
     <div class="flex items-center gap-3">
-      <a href="https://connect.schoolcareworks.com/milestones_login.jsp" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex text-sm font-semibold text-brand-navy hover:text-brand-red transition-colors">
+      <a href={actions.familyPortal} target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex text-sm font-semibold text-brand-navy hover:text-brand-red transition-colors">
         Family Portal Login
       </a>
-      <a href="/parents/enrollment" class="btn-primary h-10 px-5 text-sm hidden sm:inline-flex">
+      <a href={actions.enroll} class="btn-primary h-10 px-5 text-sm hidden sm:inline-flex">
         Enroll
       </a>
-      <a href="/donate" class="btn-secondary h-10 px-5 text-sm hidden lg:inline-flex">
+      <a href={actions.donate} class="btn-secondary h-10 px-5 text-sm hidden lg:inline-flex">
         Donate
       </a>
       

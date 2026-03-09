@@ -1,0 +1,23 @@
+{
+  "mainNav": [
+    { "text": "Programs", "href": "/programs" },
+    { "text": "Locations", "href": "/locations" },
+    { "text": "For Parents", "href": "/parents/enrollment" },
+    { "text": "News", "href": "/news" },
+    { "text": "About", "href": "/about/mission" }
+  ],
+  "actions": {
+    "familyPortal": "https://connect.schoolcareworks.com/milestones_login.jsp",
+    "enroll": "/parents/enrollment",
+    "donate": "/donate"
+  },
+  "footer": {
+    "quickLinks": [
+      { "text": "Early Childhood (2 mo - 4 yrs)", "href": "/programs/early-childhood" },
+      { "text": "Kindergarten (4K)", "href": "/programs/kindergarten" },
+      { "text": "School Age (K3 - 6th Grade)", "href": "/programs/school-age" },
+      { "text": "Summer Camps", "href": "/programs/summer-camps" },
+      { "text": "Latest News", "href": "/news" }
+    ]
+  }
+}
