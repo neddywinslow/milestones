@@ -1,0 +1,39 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import NewsCard from '../../components/NewsCard.astro';
+import { getCollection } from 'astro:content';
+
+const allNews = await getCollection('news');
+const sortedNews = allNews.sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf());
+---
+<MainLayout title="News & Announcements">
+  <section class="py-20 bg-surface-sand">
+    <div class="max-w-[1200px] mx-auto px-4 md:px-6 text-center">
+      <h1 class="text-4xl md:text-5xl font-heading font-bold text-brand-navy mb-6">News & Announcements</h1>
+      <p class="text-xl text-text-slate max-w-2xl mx-auto">
+        Stay up to date with the latest stories, program updates, and operational announcements from Milestones.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-[1200px] mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {sortedNews.map((post) => (
+          <NewsCard 
+            title={post.data.title}
+            excerpt={post.data.summary}
+            date={new Date(post.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            href={`/news/${post.slug}`}
+            pinned={post.data.pinned}
+          />
+        ))}
+      </div>
+      {sortedNews.length === 0 && (
+        <div class="text-center py-12 text-text-slate">
+          No announcements available yet. Please check back later.
+        </div>
+      )}
+    </div>
+  </section>
+</MainLayout>

@@ -1,0 +1,216 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import ProgramCard from '../components/ProgramCard.astro';
+import Testimonial from '../components/Testimonial.astro';
+
+const programs = [
+  {
+    title: "Early Childhood",
+    description: "Nurturing care and play-based learning to build a strong foundation for your youngest learners.",
+    ages: "2 months - 4 years",
+    href: "/programs/early-childhood",
+    color: "navy" as const,
+  },
+  {
+    title: "Kindergarten (4K)",
+    description: "A comprehensive Junior Kindergarten preparing 4-year-olds for success in school and life.",
+    ages: "4 years",
+    href: "/programs/kindergarten",
+    color: "red" as const,
+  },
+  {
+    title: "School Age Programs",
+    description: "Before and after school care designed to support homework, social development, and fun.",
+    ages: "K5 - 6th Grade",
+    href: "/programs/school-age",
+    color: "sky" as const,
+  },
+  {
+    title: "Summer Camps",
+    description: "Exciting, action-packed summer adventures like Little Explorers, Kid Crew, and Jet Set.",
+    ages: "K3 - 8th Grade",
+    href: "/programs/summer-camps",
+    color: "navy" as const,
+  }
+];
+---
+<MainLayout title="Home">
+  <!-- Immersive Hero Section -->
+  <section class="relative min-h-[90vh] flex items-center pt-20 pb-32 overflow-hidden bg-brand-navy">
+    <div class="absolute inset-0">
+      <img src="/assets/hero.png" alt="Happy children playing and learning in a bright preschool classroom" class="w-full h-full object-cover object-center opacity-40 mix-blend-overlay" />
+      <div class="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/80 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-brand-navy/90 via-brand-navy/50 to-transparent"></div>
+    </div>
+    
+    <div class="max-w-[1200px] mx-auto px-4 md:px-6 relative z-10 w-full mt-12">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-white tracking-widest uppercase mb-8 shadow-2xl">
+          <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse"></span>
+          Serving Families Since 1979
+        </div>
+        
+        <h1 class="text-5xl md:text-7xl font-heading font-extrabold text-white leading-[1.1] mb-8 drop-shadow-lg">
+          Where learning feels like <span class="text-brand-red relative inline-block">home.
+            <svg class="absolute w-full h-3 -bottom-1 left-0 text-brand-red opacity-80" viewBox="0 0 100 10" preserveAspectRatio="none">
+              <path d="M0 5 Q 50 15 100 0" stroke="currentColor" stroke-width="3" fill="transparent"/>
+            </svg>
+          </span>
+        </h1>
+        
+        <p class="text-xl md:text-2xl text-surface-sand/90 mb-10 leading-relaxed font-light max-w-2xl drop-shadow-md">
+          Providing the absolute highest quality care and educational opportunities for children ages 2 months to 13 years across Wisconsin.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+          <a href="/programs" class="btn-primary text-lg px-8 py-4 h-auto shadow-[0_0_30px_rgba(180,58,44,0.4)] hover:shadow-[0_0_40px_rgba(180,58,44,0.6)] group">
+            Explore Our Programs
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 group-hover:translate-x-1.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+          <a href="/parents/enrollment" class="btn-secondary text-lg border-white/20 bg-white/10 backdrop-blur-md text-white hover:bg-white hover:text-brand-navy h-auto px-8 py-4">
+            Enroll Today
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce hidden md:block text-white/50">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- Impact/Value Proposition -->
+  <section class="py-24 bg-surface-sand relative">
+    <!-- Motif Curve -->
+    <div class="absolute top-0 right-0 w-64 h-64 bg-brand-red rounded-bl-full opacity-5"></div>
+    
+    <div class="max-w-[1200px] mx-auto px-4 md:px-6 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div class="relative order-2 lg:order-1">
+          <div class="absolute -inset-4 bg-brand-sky/20 rounded-[3rem] rotate-3 p-4"></div>
+          <img src="/assets/early-childhood.png" alt="A toddler happily learning with colorful blocks in a warm nursery" class="relative rounded-[2.5rem] shadow-2xl w-full object-cover aspect-[4/5] object-center z-10" />
+          
+          <div class="absolute -bottom-10 -right-10 bg-white p-6 rounded-2xl shadow-xl z-20 max-w-xs border border-surface-mist hidden md:block">
+            <div class="flex items-center gap-4 mb-3">
+              <div class="w-12 h-12 rounded-full bg-brand-red/10 flex items-center justify-center text-brand-red">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.866 8.21 8.21 0 003 2.48z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" />
+                </svg>
+              </div>
+              <p class="font-heading font-bold text-brand-navy">Peace of Mind</p>
+            </div>
+            <p class="text-xs text-text-slate leading-relaxed">Trusted by thousands of Wisconsin families to provide a safe, enriching space for their children.</p>
+          </div>
+        </div>
+        
+        <div class="order-1 lg:order-2">
+          <h2 class="text-brand-red font-bold tracking-widest uppercase text-sm mb-4 flex items-center gap-3">
+            <span class="w-8 h-[2px] bg-brand-red"></span>
+            Why Milestones?
+          </h2>
+          <h3 class="text-4xl md:text-5xl font-heading font-extrabold text-brand-navy mb-8 leading-tight">
+            A foundation built on curiosity and care.
+          </h3>
+          <p class="text-lg text-text-slate mb-8 leading-relaxed">
+            At Milestones Programs for Children, we cultivate an environment where children thrive unconditionally. From our carefully designed classrooms to our deeply trained educators, everything is optimized for your child's developmental journey.
+          </p>
+          <ul class="space-y-5 mb-10">
+            {['Play-based, integrated curriculum tailored to every stage', 'Safe, modern facilities emphasizing creative expression', 'Passionate educators acting as partners to parents'].map((item) => (
+              <li class="flex items-start gap-3">
+                <svg class="w-6 h-6 text-brand-sky shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-text-ink font-medium">{item}</span>
+              </li>
+            ))}
+          </ul>
+          <a href="/about/mission" class="text-brand-navy font-bold tracking-wide uppercase text-sm border-b-2 border-brand-red pb-1 hover:text-brand-red transition-colors inline-flex items-center group">
+            Read Our Philosophy
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-1.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs Overview -->
+  <section class="py-24 bg-white relative">
+    <div class="max-w-[1200px] mx-auto px-4 md:px-6 relative z-10">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+        <div class="max-w-2xl">
+          <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-brand-navy mb-5">Programs for Every Stage</h2>
+          <p class="text-text-slate text-xl">
+            From their first words to their middle school science projects, we have a nurturing program designed to suit the individual needs of your child.
+          </p>
+        </div>
+        <a href="/programs" class="btn-secondary whitespace-nowrap hidden md:inline-flex">
+          View All Programs
+        </a>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {programs.map(prog => (
+          <ProgramCard {...prog} />
+        ))}
+      </div>
+      
+      <div class="mt-12 text-center md:hidden">
+         <a href="/programs" class="btn-secondary w-full">View All Programs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial Section -->
+  <section class="py-24 bg-brand-navy relative overflow-hidden">
+    <!-- Visual flair -->
+    <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 2px 2px, white 2px, transparent 0); background-size: 40px 40px; transform: rotate(-5deg); scale: 1.2;"></div>
+    <div class="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-white to-transparent"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-brand-sky rounded-full blur-[120px] mix-blend-screen opacity-50"></div>
+    
+    <div class="max-w-[1200px] mx-auto px-4 md:px-6 relative z-10">
+       <div class="text-center max-w-3xl mx-auto mb-16">
+          <svg class="w-16 h-16 text-brand-red mx-auto mb-6 opacity-80" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+          </svg>
+          <h2 class="text-3xl md:text-5xl font-heading font-medium text-white mb-8 leading-snug">
+            "The teachers are incredibly warm and attentive. It truly feels like a second home, and the peace of mind knowing my child is in such a high-quality environment is invaluable."
+          </h2>
+          <p class="font-heading font-bold text-lg text-brand-sky tracking-wider uppercase">— Sarah M. (Early Childhood Parent)</p>
+       </div>
+    </div>
+  </section>
+
+  <!-- Community CTA -->
+  <section class="py-24 bg-surface-sand">
+    <div class="max-w-[1200px] mx-auto px-4 md:px-6">
+      <div class="bg-white rounded-[3rem] shadow-2xl overflow-hidden flex flex-col lg:flex-row relative">
+         <div class="lg:w-1/2 p-12 lg:p-20 flex flex-col justify-center relative z-10">
+            <h2 class="text-4xl font-heading font-extrabold text-brand-navy mb-6">Become part of our family.</h2>
+            <p class="text-text-slate text-lg mb-10 leading-relaxed">
+              Registrations are processed through our secure SchoolCareWorks portal. See availability, schedule a tour, and get your child enrolled in an experience they will cherish.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="/parents/enrollment" class="btn-primary">
+                 Start Registration
+              </a>
+              <a href="/contact" class="btn-secondary">
+                 Contact Us
+              </a>
+            </div>
+         </div>
+         <div class="lg:w-1/2 relative min-h-[400px]">
+            <div class="absolute inset-0 bg-brand-sky mix-blend-multiply opacity-20 z-10"></div>
+            <img src="/assets/school-age.png" alt="School aged children happily doing their homework together" class="absolute inset-0 w-full h-full object-cover object-center" />
+         </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

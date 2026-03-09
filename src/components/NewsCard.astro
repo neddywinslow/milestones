@@ -1,0 +1,33 @@
+---
+interface Props {
+  title: string;
+  excerpt: string;
+  date: string;
+  href: string;
+  pinned?: boolean;
+}
+
+const { title, excerpt, date, href, pinned = false } = Astro.props;
+---
+<a href={href} class="card group flex flex-col relative hover:shadow-lg transition-shadow border border-surface-mist hover:border-brand-sky/20">
+  {pinned && (
+    <div class="absolute -top-3 right-6 bg-brand-red text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-sm">
+      Pinned
+    </div>
+  )}
+  <time class="text-brand-sky text-xs font-semibold uppercase tracking-widest mb-3 block">
+    {date}
+  </time>
+  <h3 class="text-xl font-heading font-semibold text-brand-navy mb-3 group-hover:text-brand-red transition-colors flex-grow">
+    {title}
+  </h3>
+  <p class="text-text-slate text-sm mb-6 line-clamp-3">
+    {excerpt}
+  </p>
+  <div class="mt-auto inline-flex items-center text-sm font-semibold text-brand-navy group-hover:text-brand-sky transition-colors">
+    Read Announcement
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+    </svg>
+  </div>
+</a>

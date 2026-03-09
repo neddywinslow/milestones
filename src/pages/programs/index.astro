@@ -1,0 +1,55 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import ProgramCard from '../../components/ProgramCard.astro';
+
+const programs = [
+  {
+    title: "Early Childhood",
+    description: "Nurturing care and play-based learning to build a strong foundation for your youngest learners.",
+    ages: "2 months - 4 years",
+    href: "/programs/early-childhood",
+    color: "navy" as const,
+  },
+  {
+    title: "Kindergarten (4K)",
+    description: "A comprehensive Junior Kindergarten preparing 4-year-olds for success in school and life. Our curriculum includes language arts, math, science, creative arts, and play.",
+    ages: "4 years",
+    href: "/programs/kindergarten",
+    color: "red" as const,
+  },
+  {
+    title: "School Age Programs",
+    description: "Before and after school care designed to support homework, social and emotional development, and provide a safe space for fun.",
+    ages: "K5 - 6th Grade",
+    href: "/programs/school-age",
+    color: "sky" as const,
+  },
+  {
+    title: "Summer Camps",
+    description: "Exciting, action-packed summer adventures like Little Explorers, Kid Crew, Jet Set, Action Pack, and Camp M2.",
+    ages: "K3 - 8th Grade",
+    href: "/programs/summer-camps",
+    color: "navy" as const,
+  }
+];
+---
+<MainLayout title="Programs">
+  <section class="py-20 bg-surface-sand relative">
+    <div class="max-w-[1200px] mx-auto px-4 md:px-6 flex flex-col items-center text-center">
+      <h1 class="text-4xl md:text-6xl font-heading font-bold text-brand-navy mb-6">Our Programs</h1>
+      <p class="text-xl text-text-slate max-w-2xl">
+        Milestones offers a diverse range of programs designed to suit the individual needs of children and provide peace of mind for parents. Explore our offerings below.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-[1200px] mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        {programs.map(prog => (
+          <ProgramCard {...prog} />
+        ))}
+      </div>
+    </div>
+  </section>
+</MainLayout>

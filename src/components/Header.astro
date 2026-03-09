@@ -1,0 +1,59 @@
+---
+const navLinks = [
+  { text: 'Programs', href: '/programs' },
+  { text: 'Locations', href: '/locations' },
+  { text: 'For Parents', href: '/parents/enrollment' },
+  { text: 'News', href: '/news' },
+  { text: 'About', href: '/about/mission' },
+];
+---
+<header class="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-surface-mist shadow-sm">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="flex-shrink-0" aria-label="Milestones Programs Home">
+      <img src="/assets/logo-full.svg" alt="Milestones Programs for Children" class="h-10 md:h-12 w-auto" />
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav id="mobile-nav" class="hidden absolute top-20 left-0 w-full bg-white border-b border-surface-mist shadow-lg lg:static lg:block lg:w-auto lg:border-none lg:shadow-none lg:bg-transparent">
+      <ul class="flex flex-col lg:flex-row items-center gap-6 text-sm font-medium text-text-slate p-6 lg:p-0">
+        {navLinks.map((link) => (
+          <li class="w-full lg:w-auto text-center lg:text-left">
+            <a href={link.href} class="block hover:text-brand-red transition-colors w-full lg:w-auto">{link.text}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="flex items-center gap-3">
+      <a href="https://connect.schoolcareworks.com/milestones_login.jsp" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex text-sm font-semibold text-brand-navy hover:text-brand-red transition-colors">
+        Family Portal Login
+      </a>
+      <a href="/parents/enrollment" class="btn-primary h-10 px-5 text-sm hidden sm:inline-flex">
+        Enroll
+      </a>
+      <a href="/donate" class="btn-secondary h-10 px-5 text-sm hidden lg:inline-flex">
+        Donate
+      </a>
+      
+      <!-- Mobile Menu Button -->
+      <button id="menu-btn" aria-label="Toggle navigation" class="lg:hidden p-2 text-text-slate hover:text-brand-navy ml-2 focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  
+  if (menuBtn && mobileNav) {
+    menuBtn.addEventListener('click', () => {
+      mobileNav.classList.toggle('hidden');
+    });
+  }
+</script>

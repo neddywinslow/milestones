@@ -1,0 +1,30 @@
+---
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import '../styles/index.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Milestones Programs for Children provides the highest quality care and educational opportunities for children." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{title} | Milestones Programs</title>
+		<meta name="description" content={description} />
+		<link rel="icon" type="image/svg+xml" href="/assets/logo-mark.svg" />
+	</head>
+	<body class="min-h-screen flex flex-col pt-20">
+		<Header />
+		<main class="flex-grow">
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>
