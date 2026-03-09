@@ -28,9 +28,8 @@ const pagesCollection = defineCollection({
 });
 
 const testimonialsCollection = defineCollection({
-  type: 'data',
+  type: 'content',
   schema: z.object({
-    quote: z.string(),
     author: z.string(),
     role: z.string().optional(),
   }),
